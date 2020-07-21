@@ -1,0 +1,32 @@
+.image-transparente{
+    --background: none;
+    font-size: 9pt;
+    color: red;
+}
+
+.sinpadding{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-bottom: 10px;
+}
+
+.sinbutton{
+    margin-bottom: 5px;
+}
+
+.toCenter{
+     
+    font-size: 11px;
+    font-style: italic;
+    font-weight: bold;
+    color: rgba(65, 63, 63, 0.664);
+  }
+
+.estiloCorto{
+    max-width: 50px !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+    display: inline-block;
+}

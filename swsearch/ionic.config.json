@@ -1,0 +1,7 @@
+{
+  "name": "AppPoli",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

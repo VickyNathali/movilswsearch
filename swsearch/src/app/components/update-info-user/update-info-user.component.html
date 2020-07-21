@@ -1,0 +1,200 @@
+<ion-header color="warning">
+  <ion-toolbar color="header">
+    <ion-title color="header-letra" style="font-weight: bold; text-align: center;">
+      Mi perfil
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="closeModal()">
+        <ion-icon name="close" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="updateUserPoli( fUpd )" #fUpd="ngForm" class="register-form">
+  
+<br>
+    <ion-item lines="none">      
+      <ion-avatar class="inCenter">
+        <img [src]="user[0].FOTO_PER">
+      </ion-avatar>
+      <div>
+      <label> <ion-badge type="number" class="estiloCorto" style="width: 50px !important; height: 21px !important;" mode="ios" color="success" *ngIf="_cas.uploadPercent">{{_cas.uploadPercent | async}}%</ion-badge> </label>                
+          <br>
+        <ion-button class="verde" (click)="openLoadPhoto()" style="z-index: 100;">
+          <ion-icon name="image"></ion-icon>
+        </ion-button>
+      </div>    
+    </ion-item>
+    <ion-list lines="none">
+
+
+      <!-- Inicio cedula (keyup)="seleccionarInput('esUsuario')" (change)="validarUsuario(user[0].USUARIO_PER)" -->
+
+      <ion-item class="sinbutton">
+        <ion-label position="floating">Cédula</ion-label>
+        <ion-input (keyup)="seleccionarInput('esCedulaPro')" type="tel" name='cedula' 
+        placeholder="*Cédula" [(ngModel)]="user[0].CEDULA_PER" #cedula="ngModel" digits pattern="[0-9]*" minlength="10" maxlength="10" required></ion-input>
+      </ion-item>
+
+      <ion-item class="sinbutton" disabled style="height: 0px; position: absolute;">
+        <ion-label position="floating">Cédula</ion-label>
+        <ion-input (ionChange)="validarCedulaDig(user[0].CEDULA_PER)" type="tel" debounce='2000' name='cedula2'
+        placeholder="*Cédula" [(ngModel)]="user[0].CEDULA_PER" #ceddula="ngModel" digits pattern="[0-9]*" minlength="10" maxlength="10" required></ion-input>
+      </ion-item>
+
+      <div class="image-transparente" *ngIf="cedula.errors && (cedula.dirty || cedula.touched)">
+        <ion-text color="danger" [hidden]="!cedula.errors.pattern">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Ingrese sólo números &nbsp;
+          </p>
+        </ion-text>
+        <ion-text color="danger" [hidden]="!cedula.errors.minlength">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Ingrese un mínimo de 10 números &nbsp;
+          </p>
+        </ion-text>
+        <ion-text color="danger" [hidden]="!cedula.errors.required">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Campo requerido
+          </p>
+        </ion-text>
+      </div>
+
+      <!-- Fin cedula -->
+      <!-- Inicio nombres -->
+
+      <ion-item class="sinbutton">
+        <ion-label position="floating">Nombres</ion-label>
+        <ion-input (keyup)="seleccionarInput('esNombre')" class="ion-text-capitalize" type="text" placeholder="*Nombre"
+          [(ngModel)]="user[0].NOMBRES_PER" #nombres="ngModel" name='nombres' pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ]*" required></ion-input>
+      </ion-item>
+
+      <div class="image-transparente" *ngIf="nombres.errors && (nombres.dirty || nombres.touched)">
+        <ion-text color="danger" [hidden]="!nombres.errors.pattern">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Ingrese sólo caracteres alfabéticos
+          </p>
+        </ion-text>
+        <ion-text color="danger" [hidden]="!nombres.errors.required">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Campo requerido
+          </p>
+        </ion-text>
+      </div>
+
+      <!-- Fin nombres -->
+      <!-- Inicio apellidos -->
+
+      <ion-item class="sinbutton">
+        <ion-label position="floating">Apellidos</ion-label>
+        <ion-input (keyup)="seleccionarInput('esApellido')" class="ion-text-capitalize" type="text"
+          placeholder="*Apellido" [(ngModel)]="user[0].APELLIDOS_PER" #apellidos="ngModel" name='apellidos'
+          pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ]*" required></ion-input>
+      </ion-item>
+
+      <div class="image-transparente" *ngIf="apellidos.errors && (apellidos.dirty || apellidos.touched)">
+        <ion-text color="danger" [hidden]="!apellidos.errors.pattern">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Ingrese sólo caracteres alfabéticos
+          </p>
+        </ion-text>
+        <ion-text color="danger" [hidden]="!apellidos.errors.required">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Campo requerido
+          </p>
+        </ion-text>
+      </div>
+
+      <!-- Fin apellidos -->
+      <!-- Inicio carrera [(ngModele)]="user[0].NOMBRE_CAR"  #carrera="ngModel" -->
+
+      <ion-item class="sinbutton colorPlaceholder">
+        <ion-label position="floating">
+          <!--  <ion-icon name="person" item-start></ion-icon> -->
+          Carrera</ion-label>
+
+        <ion-select interface="popover"  [value]="user[0].ID_CAR" placeholder="{{user[0].NOMBRE_CAR}}"
+          (ionChange)="justCareers($event)">
+
+          <ion-select-option [value]="item.ID_CAR" *ngFor="let item of this.carrers; let i = index">
+            {{item.NOMBRE_CAR}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!--       <div class="image-transparente" *ngIf="carrera.errors && (carrera.dirty || carrera.touched)">
+ 
+        <ion-text color="danger" [hidden]="!carrera.errors.required">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Campo requerido
+          </p>
+        </ion-text>
+      </div> -->
+
+      <!-- Fin carrera -->
+      <!-- Inicio usuario -->
+
+      <ion-item class="sinbutton">
+        <ion-label position="floating"> Usuario </ion-label>
+        <ion-input (keyup)="seleccionarInput('esUsuario')" type="text" placeholder="*Usuario" name='usuarios'
+          [(ngModel)]="user[0].USUARIO_PER" #usuario="ngModel" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ0123456789@._-]*" required></ion-input>
+      </ion-item>
+
+      <ion-item class="sinbutton" disabled style="height: 0px; position: absolute;">
+        <ion-label position="floating"> Usuario </ion-label>
+        <ion-input (ionChange)="validarUsuario(user[0].USUARIO_PER)" debounce='2000' type="text" placeholder="*Usuario" name='usuarios2'
+          [(ngModel)]="user[0].USUARIO_PER" #usuariio="ngModel" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ0123456789@._-]*" required></ion-input>
+      </ion-item>
+
+      <div class="image-transparente" *ngIf="usuario.errors && (usuario.dirty || usuario.touched)">
+        <ion-text color="danger" [hidden]="!usuario.errors.pattern">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Ingrese caracteres permitidos: . @ - _ letras y números</p>
+        </ion-text>
+        <ion-text color="danger" [hidden]="!usuario.errors.required">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Campo requerido
+          </p>
+        </ion-text>
+      </div>
+
+      <!-- Fin usuario -->
+      <!-- Inicio contrasena -->
+
+      <ion-item class="sinbutton">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-icon class="btn_eye_icon" color="medium" slot="end" [name]="iconpassword" (click)="togglePasswordMode()">
+        </ion-icon>
+        <ion-input (keyup)="deleteBlankSpace(user[0].CONTRASENA_PER)" placeholder="*Contraseña" [(ngModel)]="user[0].CONTRASENA_PER" #contrasena="ngModel" name='contrasena'
+          [type]="passwordTypeInput" #passwordEyeRegister minlength="6" required></ion-input>
+      </ion-item>
+
+      <div class="image-transparente" *ngIf="contrasena.errors && (contrasena.dirty || contrasena.touched)">
+        <ion-text color="danger" [hidden]="!contrasena.errors.required">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Campo requerido &nbsp;
+          </p>
+        </ion-text>
+        <ion-text color="danger" [hidden]="!contrasena.errors.minlength">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Contraseña mínima de 6 caracteres
+          </p>
+        </ion-text>
+      </div>
+
+      <!-- Fin contrasena -->
+
+
+
+    </ion-list>
+    <div style="text-align: center;"> 
+    <ion-button mode="ios" class="verde" expand="block" type="submit">
+      Modificar
+    </ion-button>
+  
+    </div>
+  
+  </form>
+
+</ion-content>

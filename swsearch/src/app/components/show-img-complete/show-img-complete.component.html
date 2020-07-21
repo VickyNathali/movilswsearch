@@ -1,0 +1,19 @@
+<ion-content class="colorContent">
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="closeModal()" size="small" mode="ios" translucent="true" class="btnColorLocate">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div class="alignCenter">
+ 
+      <div class="swiper-zoom-container">
+        <img src="{{imgRoute[0].nombre | imagen }}" alt="{{imgRoute[0].nombre}}">  <!-- (click)="openAllImg(item.OBSERVACIONES_AUL,item.FOTO_AUL)" -->
+      </div>
+      
+     
+</div>
+</ion-content>
+<ion-footer class="styleFooter">
+  <p class="floatField">{{imgRoute[0].detalle}}</p>
+</ion-footer>

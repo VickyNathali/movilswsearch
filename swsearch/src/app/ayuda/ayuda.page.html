@@ -1,0 +1,54 @@
+<ion-content>
+<!--   <ion-fab vertical="top" horizontal="end" slot="fixed">
+          <ion-fab-button class="btnColorFab2" size="small">
+            Omitir
+          </ion-fab-button>
+        </ion-fab> -->
+<ion-slides pager="true" #mySlider>
+     
+
+   <ion-slide class="step-one"> 
+     
+    <div class="contenedor">      
+      <img [src]="inicioSesion">    
+      <div class="centrado">
+       
+         <ion-buttons>
+         <ion-button color="verde" class="sobresalirImg" style="text-transform:none!important;" (click)="swipeNext()"> <span style="font-size: 17px;"> Seguir </span><ion-icon name="arrow-forward-outline"></ion-icon></ion-button>      
+        </ion-buttons>
+        
+     </div>
+   </div> <!-- contendor -->
+   
+   </ion-slide>
+
+   <ion-slide class="step-four">
+     
+     <div class="contenedor">
+       <img [src]="crearCuenta">  
+       <div class="centrado2">
+   
+          <ion-button shape="round" class="newFondo" style="z-index: 100; text-transform:none!important;" (click)="goLogin()"> <span style="font-size: 17px;">Finalizar </span> </ion-button>  
+       
+       
+      </div>
+    </div>
+
+
+  
+   </ion-slide>
+
+
+<!--    <ion-slide class="step-nine">
+          <ion-img src="../../../assets/tutorial/chat.png" style="padding-bottom: 50px;"></ion-img>
+          <h1> <strong> Chat </strong> </h1>
+          <p color="medium" class="padRight">¡Comunícate con<label class="estiloSub8"> todos los usuarios</label>!.
+              Los mensajes son guardados y muestran la hora/fecha de
+              envío. Puedes realizar llamadas telefónicas</p>
+
+          <ion-button class="btncolor" expand="full" shape="round">Finalizar</ion-button>
+      </ion-slide> -->
+
+
+</ion-slides>
+</ion-content>

@@ -1,0 +1,71 @@
+<ion-header color="warning">
+  <ion-toolbar color="header">
+    <ion-title color="header-letra" style="font-weight: bold; text-align: center;">
+      {{title}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="closeModal()">
+        <ion-icon name="close" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="paddingBorders">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10">
+          <p><strong>{{teacherFind[0].NOMBRES_DOC}} {{teacherFind[0].APELLIDOS_DOC}} </strong></p>
+        </ion-col>
+        <ion-col size="2" class="alignCenter">
+          <ion-buttons>
+          <ion-button color="white" (click)="goToProfile(teacherFind[0])">
+            <ion-icon color="navigate" name="person"></ion-icon>                       
+          </ion-button>
+        </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid> 
+   
+  </div>
+  <div class="paddingTitle">
+    <ion-text color="tertiary">
+      <ion-label class="periodoStyle"> Período académico: {{teacherFind[0].INICIO_PER | date:"MMMM"}} -
+        {{teacherFind[0].FIN_PER | date:"MMMM yyyy"}} </ion-label>
+    </ion-text>
+  </div>
+  <hr>
+</ion-header>
+
+<ion-content padding class="sizeLetters">
+
+  <ion-grid>
+    <ion-card *ngFor="let i of daysNoRepeat">
+      <p style="text-align: center; color: black; text-transform: uppercase; width: 100%; margin-bottom: 0px">
+        <b>{{i}}</b></p> <br>
+    <ion-row *ngFor="let j of ordenDaysClass">
+        
+      <ion-item style="width: 95%;" *ngIf="i===j.DESCRIPCION_DIA">
+       
+      <ion-col size="11" class="sizeLetters">
+        <label><b>Carrera: </b> {{j.NOMBRE_CAR}}</label><br>
+        <label><b> Nivel:</b> {{j.DESCRIPCION_SEM}}</label> <br>
+        <label><b>Paralelo:</b> {{j.PARALELO}}</label> <br>
+        <label><b>Asignatura:</b> {{j.NOMBRE_ASIG}}</label> <br>
+        <label><b>Aula-Lab:</b> {{j.NOMBRE_AUL}}</label> <br>          
+        <label><b>Hora:</b> {{j.INICIO_HORA}} - {{j.FIN_HORA}}</label>
+      </ion-col>
+      
+      <ion-col size="1" class="alignCenter">
+        <ion-buttons>
+        <ion-button color="white" (click)="goToClassNavigate(j.LATITUD_AUL, j.LONGITUD_AUL,j.NOMBRE_AUL)">
+          <ion-icon color="danger" name="location"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      </ion-col>
+    </ion-item>
+  </ion-row>
+</ion-card>
+  </ion-grid>
+
+
+</ion-content>

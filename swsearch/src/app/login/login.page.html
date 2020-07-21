@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar> 
+    <ion-title style="color: #08245D"><b> SwSearch</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="logo-box">
+    <img [src]="logoPath" text-center style="padding-left: 10px;">
+  </div>
+  
+  <h2 style="color:#08245D; text-align: center;margin-top: 0px;"> <b> Iniciar sesión </b></h2>
+  <form (ngSubmit)="loginUserPoli( fLogin )" #fLogin="ngForm" class="login-form">
+    <br>
+    <div text-center>
+      <label style="color: #000000; font-size: 12px;">Completar lo siguiente para continuar: </label>
+    </div>
+
+
+    <ion-list lines="none">
+
+      <!-- Inicio de usuario -->
+      <ion-grid style="padding-bottom: 0px;">
+        <ion-row>
+          <ion-col size="2" class="alignCenter">
+            <ion-icon name="person" style="color:#08245D;"></ion-icon>
+            <small style="color: red;">*</small>
+          </ion-col>
+          <ion-col size="10">
+            <ion-item class="sinbutton">
+              <ion-input (keyup)="seleccionarInput('esNombre')" type="text" placeholder="Usuario" #usuario="ngModel"
+                [(ngModel)]="loginUser.usuario" name="usuario" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ0123456789@._-]*" minlength="1" required></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div class="image-transparente" *ngIf="usuario.errors && (usuario.dirty || usuario.touched)">
+
+        <ion-text color="danger" [hidden]="!usuario?.errors.pattern">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Ingrese sólo caracteres permitidos: . @ - _ letras y números
+          </p>
+        </ion-text>
+        <ion-text color="danger" [hidden]="!usuario?.errors.required">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Campo requerido
+          </p>
+        </ion-text>
+      </div>
+
+      <!-- Fin de usuario -->
+
+      <!-- Inicio de Contrasena -->
+      <ion-grid style="padding-top: 0px; padding-bottom: 0px;">
+        <ion-row>
+          <ion-col size="2" class="alignCenter">             
+            <ion-icon name="key" style="color:#08245D;"></ion-icon>
+            <small style="color: red;">*</small>
+          </ion-col>
+          <ion-col size="10">
+      <ion-item class="sinbutton"> 
+        <ion-icon class="btn_eye_icon" color="medium" slot="end" [name]="iconpassword" (click)="togglePasswordMode()">
+        </ion-icon> 
+        <ion-input type="password" placeholder="Contraseña" [(ngModel)]="loginUser.contrasena" #contrasena="ngModel"
+          name="contrasena" minlength="6" [type]="passwordTypeInput" #passwordEyeRegister required></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+      <div class="image-transparente" *ngIf="contrasena.errors && (contrasena.dirty || contrasena.touched)">
+
+        <ion-text color="danger" [hidden]="!contrasena?.errors.required">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Campo requerido &nbsp;
+          </p>
+        </ion-text>
+        <ion-text color="danger" [hidden]="!contrasena?.errors.minlength">
+          <p class="sinpadding">
+            <ion-icon name="information-circle-outline" color="danger"></ion-icon>Contraseña mínima de 6 caracteres
+          </p>
+        </ion-text>
+      </div>
+
+
+      <!-- Fin de Contrasena -->
+
+    </ion-list>
+
+    <div style="text-align: center;">
+      <ion-button type="submit" mode="ios"  expand="block" class="azul" explan [disabled]="loginUser.contrasena.length < 6 || loginUser.usuario.length == 0">
+        Entrar
+      </ion-button>
+    </div>
+    <br>
+    <p style="font-size: 12px; padding-left: 10px;">¿Quieres unirte a SwSearch? <label style="color:#00a65a; font-size: 13px;" (click)="goRegister()"> <b> Crear cuenta </b></label></p>
+    <div style="font-size: 12px; padding-left: 10px;"><p style="color:#041435; text-align: center; vertical-align:middle; font-size: 13px;" text-center (click)="goHelp()"> <ion-icon name="help-circle-outline" class="text-center" color="azulfuerte"></ion-icon> <b> Ayuda </b></p></div>
+   
+  </form>
+  
+
+</ion-content>

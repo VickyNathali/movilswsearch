@@ -1,0 +1,37 @@
+<ion-header color="warning">
+  <ion-toolbar color="header">
+    <ion-title color="header-letra" style="font-weight: bold; text-align: center;">
+      {{title}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="closeModal()">
+        <ion-icon name="close" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="paddingBorders">
+
+    <p><strong>PERFIL DEL DOCENTE</strong></p> 
+    
+  </div>
+ 
+  <hr>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="login-form">
+   
+  <ion-avatar class="inCenter">
+    <img [src]="logoProfile">
+  </ion-avatar>
+ <br>
+  <p style="text-align:center; font-size: 17px;"> <b> {{this.profileTeac[0].NOMBRES_DOC}} {{this.profileTeac[0].APELLIDOS_DOC}} </b></p> <br>
+  <p style="font-size: 15px;"> <b>Título académico: </b> <label style="text-align:justify">{{this.profileTeac[0].TITULO_DOC}}</label> </p>
+  <p style="font-size: 15px;"> <b>Celular: </b> <label style="text-align:justify">{{this.profileTeac[0].CELULAR_DOC}}</label> </p>
+  <p style="font-size: 15px;"> <b>Correo: </b> <label style="text-align:justify">{{this.profileTeac[0].CORREO_DOC}} </label></p>
+  <p style="font-size: 15px;"> <b>Página personal: </b><a href="{{this.profileTeac[0].LINK_PAG_DOC}}"> <label style="text-align:justify">{{this.profileTeac[0].LINK_PAG_DOC}} </label></a>  </p>
+
+</div>
+
+</ion-content>

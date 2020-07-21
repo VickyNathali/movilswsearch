@@ -1,0 +1,24 @@
+.contenedor{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+ 
+ 
+.centrado{
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.centrado2{
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sobresaliImg{        
+    color:#00a65a;     
+}
+

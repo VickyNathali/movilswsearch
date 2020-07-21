@@ -1,0 +1,118 @@
+<ion-header color="warning">
+  <ion-toolbar color="header">
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="closeModal()">
+        <ion-icon name="close" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="header-letra" style="font-weight: bold; text-align: center;">
+      {{titulo}}
+    </ion-title>    
+  </ion-toolbar>
+      <ion-searchbar  mode="ios" debounce="700" #buscar    
+      color="gray" placeholder="Buscar por aulas-laboratorios, asignaturas y docentes..." (ionChange)="search($event)">
+      </ion-searchbar>
+
+    
+
+</ion-header>
+
+<ion-content padding>
+
+
+<!--   <ion-grid *ngIf="!buscando">
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-spinner name="bubbles"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <div *ngIf="showLogo">
+    <img [src]="logoSearch" alt="">
+  </div>
+
+  <ion-list *ngIf="!showLogo">
+
+    <!-- AULAS - LABORATORIOS -->
+    <ion-card>
+      <b>
+        <p class="sizeLetterCard1">AULAS - LABORATORIOS</p>
+      </b>
+      <ion-grid>
+        <ion-row *ngFor="let item of _ps.aulasLabor">         
+
+          <ion-col size="8">
+            <p class="sizeLetterCard">{{item.nombre}}</p>
+          </ion-col>
+          <ion-col size="4" class="alignCenter">
+            <ion-buttons *ngIf="item.id !== 'Error'">
+              <ion-button color="verde" (click)="openImageComplete(item.fotoDetalle,item.foto)">
+                <ion-icon name="image-outline"></ion-icon>
+              </ion-button>
+              <ion-button color="rojobotonfav" (click)="goToClassNavigate(item.lat, item.lon,item.nombre)">
+                <ion-icon name="location-outline"></ion-icon>
+              </ion-button>
+              <ion-button color="header" (click)="goToLaboratory(item.id,item.nombre)">
+                <ion-icon name="reader-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <!-- ASIGNATURAS -->
+    <ion-card>
+      <b>
+        <p class="sizeLetterCard1">ASIGNATURAS</p>
+      </b>
+      <ion-grid>
+        <ion-row *ngFor="let item of _ps.SubjectsEn">
+
+          <ion-col size="9">
+            <p class="sizeLetterCard">{{item.nombre}}</p>
+          </ion-col>
+          <ion-col size="3" class="alignCenter">
+            <ion-buttons>            
+              <ion-button *ngIf="item.id !== 'Error'" color="header" (click)="goToSubject(item.id)">
+                <ion-icon  name="reader-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card>
+
+    <!-- DOCENTES -->
+    <ion-card>
+      <b>
+        <p class="sizeLetterCard1">DOCENTES</p>
+      </b>
+      <ion-grid>
+
+        <ion-row *ngFor="let item of _ps.teachersEn">
+
+          <ion-col size="9">
+            <p class="sizeLetterCard">{{item.nombre}} {{item.apellido}}</p>            
+          </ion-col>
+          <ion-col size="3" class="alignCenter">
+            <ion-buttons>
+
+              <ion-button *ngIf="item.id !== 'Error'" color="header" (click)="goToTeacher(item.id)">
+                <ion-icon name="reader-outline"></ion-icon>
+                 
+              </ion-button>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card>
+
+  </ion-list>
+
+
+
+</ion-content>

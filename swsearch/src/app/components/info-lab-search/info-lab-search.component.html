@@ -1,0 +1,75 @@
+<ion-header color="warning">
+  <ion-toolbar color="header">
+    <ion-title color="header-letra" style="font-weight: bold; text-align: center;">
+     {{title}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="closeModal()">
+        <ion-icon name="close" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="paddingBorders">
+ 
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10">
+          <p><strong> {{classFind[0].NOMBRE_AUL}} </strong></p>
+        </ion-col>
+        <ion-col size="2" class="alignCenter">
+          <ion-buttons>
+          <ion-button color="white" (click)="goToClassNavigate(classFind[0].LATITUD_AUL, classFind[0].LONGITUD_AUL,classFind[0].NOMBRE_AUL)">
+            <ion-icon color="danger" name="location"></ion-icon>                       
+          </ion-button>
+        </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid> 
+
+
+
+
+  </div>
+  <div class="paddingTitle">
+    <ion-text color="tertiary">
+      <ion-label class="periodoStyle"> Período académico: {{classFind[0].INICIO_PER | date:"MMMM"}} -
+        {{classFind[0].FIN_PER | date:"MMMM yyyy"}} </ion-label>
+    </ion-text>
+  </div>
+  <hr>
+</ion-header>
+
+<ion-content padding class="sizeLetters">
+
+
+
+  <ion-grid>
+    
+    <ion-card *ngFor="let i of daysNoRepeat;let cafe=index;">
+      <p style="text-align: center; color: black; text-transform: uppercase; width: 100%; margin-bottom: 0px">
+      <b>{{i}}</b></p> <br>
+    <div >
+       
+    <ion-row *ngFor="let j of ordenDaysClass">
+    <ion-item style="width: 95%;" *ngIf="i===j.DESCRIPCION_DIA">  <!--  -->
+      
+      
+      <ion-col class="sizeLetters">
+        
+        
+        <label><b>Carrera: </b> {{j.NOMBRE_CAR}}</label><br>
+        <label><b>Nivel: </b> {{j.DESCRIPCION_SEM}}</label><br>
+        <label><b>Paralelo:</b> {{j.PARALELO}}</label><br>
+        <label><b>Asignatura:</b> {{j.NOMBRE_ASIG}}</label><br>
+        <label><b>Docente:</b> {{j.NOMBRES_DOC}} {{j.APELLIDOS_DOC}}</label> <br>
+        <label><b> Hora:</b> {{j.INICIO_HORA}} - {{j.FIN_HORA}}</label> 
+       
+          </ion-col>
+      </ion-item>    
+      </ion-row>
+    </div>
+    </ion-card> 
+  </ion-grid>
+
+
+</ion-content>

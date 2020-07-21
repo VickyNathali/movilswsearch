@@ -1,0 +1,77 @@
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+ion-content ion-toolbar {
+  --background: translucent;
+}
+
+.estiloFrente {
+  background-color: green;
+  color: white;
+  position: fixed;
+  word-wrap: break-word;
+  z-index: 100;
+
+}
+
+.tamLetraAsig {
+  font-size: 9pt !important;
+  font-weight: bolder;
+}
+
+
+.backColorGreen {
+  background-color: #5cb85c !important;
+  border-radius: 10px !important;
+}
+
+.backColorGray {
+  background-color: gray !important;
+  border-radius: 10px !important;
+}
+
+.custom-class-name {
+  background-color: red;
+}
+
+.toCenter {
+  text-align: center;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: bold;
+  color: rgba(65, 63, 63, 0.664);
+}
+
+.divTotal {
+
+  background-color: #041435;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+}

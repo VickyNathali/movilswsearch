@@ -1,0 +1,81 @@
+<ion-content padding *ngIf="ocultarContenido">
+
+  <div class="add-subject-form">
+    <ion-list lines="none">
+      <ion-item class="sinLines">
+        <ion-label position="floating"><small style="color: red;">*</small>Período académico</ion-label>
+        <ion-select interface="popover" placeholder="Seleccione" (ionChange)="justPeriodo($event)"
+          (ionBlur)="disabledButtonsPer()">
+
+          <ion-select-option value="{{item.id}}" *ngFor="let item of periodo">
+            {{item.start | date:"MMMM"}}-{{item.end | date:"MMMM yyyy"}}</ion-select-option>
+
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><small style="color: red;">*</small>Nivel</ion-label>
+        <label *ngIf="mostrarSpinnerNivel" interface="popover" #nivelSelect placeholder="Seleccione">
+          <label>
+            <ion-spinner name="crescent"></ion-spinner>
+          </label>
+        </label>
+        <ion-select disabled="{{disableNivel}}" *ngIf="!mostrarSpinnerNivel" interface="popover" #nivelSelect
+          placeholder="Seleccione" (ionChange)="justLevels($event)" (ionBlur)="disabledButtonsNivel()">
+          <ion-select-option value="{{item.id}}" *ngFor="let item of niveles">{{item.sem}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"><small style="color: red;">*</small>Asignatura</ion-label>
+        <label *ngIf="mostrarSpinnerAsignatura" interface="popover" placeholder="Seleccione">
+          <label>
+            <ion-spinner name="crescent"></ion-spinner>
+          </label>
+        </label>
+        <ion-select disabled="{{disableAsignatura}}" *ngIf="!mostrarSpinnerAsignatura" #asignaturaSelect
+          interface="popover" placeholder="Seleccione" (ionChange)="justSubjects($event)"
+          (ionBlur)="disabledButtonsAsig()">
+          <ion-select-option value="{{item.id}}" *ngFor="let item of asignaturas">{{item.asig}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><small style="color: red;">*</small>Paralelo</ion-label>
+        <label *ngIf="mostrarSpinnerParalelo" interface="popover" placeholder="Seleccione">
+          <label>
+            <ion-spinner name="crescent"></ion-spinner>
+          </label>
+        </label>
+        <ion-select disabled="{{disableParalelo}}" *ngIf="!mostrarSpinnerParalelo" #paraleloSelect interface="popover"
+          placeholder="Seleccione" (ionChange)="justClassroom($event)" (ionBlur)="disabledButtonsPara()">
+          <ion-select-option value="{{itemp}}" *ngFor="let itemp of paralelos">{{itemp}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item disabled="{{disableDocente}}">         
+        <ion-label>Docente</ion-label>
+ 
+        <label>
+          <ion-spinner *ngIf="mostrarSpinner" name="crescent"></ion-spinner>
+          <label *ngIf="!mostrarSpinner"> {{docentes[0].nombre}} {{docentes[0].apellido}} </label>
+        </label>
+      </ion-item>
+
+
+    </ion-list>
+
+    <div style="text-align: center;">
+
+
+      <ion-button mode="ios" expand="block" class="verde" disabled="{{activarButton}}" (click)="saveFavoriteSubject()">
+        Guardar&nbsp;<ion-spinner *ngIf="mostrarSpinnerGuardar" name="dots"></ion-spinner> <label
+          *ngIf="!mostrarSpinnerGuardar"></label>
+
+      </ion-button>
+
+
+    </div>
+
+  </div>
+</ion-content>

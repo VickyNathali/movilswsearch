@@ -1,0 +1,65 @@
+<ion-header color="warning">
+  <ion-toolbar color="header">
+    <ion-title color="header-letra" style="font-weight: bold; text-align: center;">
+      {{titulo}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="closeModal()">
+        <ion-icon name="close" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="paddingBorders">
+    <p  ><strong> Información de la asignaturas</strong></p>
+  </div>
+  <div class="paddingTitle">
+    <ion-text>
+      <ion-label class="periodoStyle"> Período académico: {{listAulas[0].INICIO_PER | date:"MMMM"}} -
+        {{listAulas[0].FIN_PER | date:"MMMM yyyy"}} </ion-label>
+    </ion-text>
+     <hr>
+    <ion-text color="dark" style="text-align: center;">
+      <p class="estiloAsignatura">{{listAulas[0].NOMBRE_ASIG}}</p>
+    </ion-text>
+  </div>
+
+  <div class="paddingTitle">  
+      <label><b>Nivel: </b> {{this.listAulas[0].DESCRIPCION_SEM}}</label> <br>
+      <label><b>Paralelo: </b>{{listAulas[0].PARALELO}}</label> <br>
+      <label><b>Docente:</b> {{listAulas[0].NOMBRES_DOC}} {{listAulas[0].APELLIDOS_DOC}}</label>
+  </div>
+  <hr>
+</ion-header>
+
+<ion-content class="sizeLetters">
+
+  <ion-grid>
+    <ion-row *ngFor="let item of listAulas;let i = index">
+      <ion-col size="5" style="margin-left: 10px;">
+        <label> <b> Aula-Lab:</b> {{item.NOMBRE_AUL}}</label> <br>
+        <label><b>Día:</b> {{item.DESCRIPCION_DIA}}</label> <br>
+        <label><b>Hora:</b> {{item.INICIO_HORA}} - {{item.FIN_HORA}}</label> <br>
+        <label><b>Observaciones:</b> {{item.OBSERVACIONES_AUL}}</label>
+        <hr>
+      
+      </ion-col>
+      <ion-col size="4" class="alignCenter2">
+       <div class="tamFoto">
+        <img src="{{item.FOTO_AUL | imagen }}" alt="{{item.NOMBRE_AUL}}" class="img-fluid imgOnCol" (click)="openAllImg(item.OBSERVACIONES_AUL,item.FOTO_AUL)">   
+      </div>
+        
+      
+      </ion-col>
+      <ion-col size="2" class="alignCenter">
+        <ion-buttons>
+        <ion-button (click)="goToAddress(item.LATITUD_AUL,item.LONGITUD_AUL,item.NOMBRE_AUL)">
+          <ion-icon  color="rojobotonfav" name="location"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+        <hr>
+      </ion-col>
+    </ion-row> 
+  </ion-grid>
+
+
+</ion-content>
